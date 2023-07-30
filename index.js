@@ -30,7 +30,28 @@ app.get('/checkout-session', async (req, res) =>{
      // (Optional) beautiful indented output.
 console.log(str); // Logs output to dev tools console.
 
-    let session = await stripe.checkout.sessions.retrieve(str)
+    let session = await stripe.checkout.sessions.retrieve(str, {
+expand:['line_items']
+    });
+    console.log(session)
+    console.log("subscription: "+ session.subscription)
+    //  customer: 'cus_OMPYifEgutTn3T',
+
+    //sub_1NZgjYG92AHfGFaWNdUUsHM5
+    console.log("customer: "+session.customer)
+    console.log("id:"+ session.id)
+    var customer_email = session.customer_details.email
+    console.log("email: "+ customer_email)
+    var created =  session.created
+
+    var expires = session.expires
+    console.log(session.line_items.data)
+    var price_id = session.line_items.data[0].price.id
+    var payment_status = session.payment_status
+    var status = session.status
+    console.log("status: "+ status)
+    console.log("price_id: "+ price_id)
+
     res.json(session)
 })
 
