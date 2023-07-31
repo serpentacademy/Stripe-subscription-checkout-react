@@ -16,7 +16,7 @@ function Home() {
       
     function createCheckoutSession(){
       const stripePromise = loadStripe(
-         "pk_test_51NZNIsG92AHfGFaWVOd28iCBQGGz8tT3SjVb4w5fSRre9Oe05eRQKJICzC01crSsgYBWNEwTeQfgK85uuLJO3eDK006HKpSfMb")
+         "YOUR PK TEST KEY")
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
